@@ -1,0 +1,16 @@
+{
+  "name": "myrandomuser",
+  "version": "1.0.0",
+  "description": "Random User Generator REST API in Node.js",
+
+ "main": "./InformaticaJaar1/Periode4/Practicum/MyRandomUser/myrandomuser.js",
+ "scripts": {
+ "start": "node myrandomuser.js"
+ },
+
+  "author": "Matthijs",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
