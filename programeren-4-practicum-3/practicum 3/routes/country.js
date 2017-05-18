@@ -2,7 +2,16 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-// var recipes = require('../recepies.js');
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'node_mysql_user',
+	password : process.env.DB_PASSWORD,
+	database : 'sakila'
+});
+
+
+connection.connect();
 
 router.get('/info', function(request, response) {
  response.status(200);
@@ -10,22 +19,19 @@ router.get('/info', function(request, response) {
  "description": "Recipes"
  });
 });
-/*
-router.get('/recipes', function(request,response){
-	response.json(recipes)
-});
 
-router.get('/recipes/:id', function(request,response){
-	var id = request.params.id || '';
-	var recipe = recipes[id];
-	response.json(recipe);
-});
-*/
 router.get('/countries', function(request, response){
 	response.status(200);
-	response.json({
-		"description": "Recipes"
-	});
+//	response.json({ "description": "Recipes" });
+	connection.query('SELECT * from actor LIMIT 3', function(error, rows, fields) {
+			if (error)
+				console.log('' + error);
+			else
+				console.dir(rows);
+		});
+
+	connection.end();
+
 });
 
 router.get('/countries/:id', function(request, response){
