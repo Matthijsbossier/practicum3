@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'node_mysql_user',
 	password : process.env.DB_PASSWORD,
-	database : 'sakila'
+	database : 'world'
 });
 
 
@@ -22,16 +22,15 @@ router.get('/info', function(request, response) {
 
 router.get('/countries', function(request, response){
 	response.status(200);
-//	response.json({ "description": "Recipes" });
-	connection.query('SELECT * from actor LIMIT 3', function(error, rows, fields) {
+	connection.query('SELECT * from country LIMIT 3', function(error, rows, fields) {
 			if (error)
 				console.log('' + error);
 			else
-				console.dir(rows);
+				console.log("gelukt");
+				response.json(rows);
 		});
-
 	connection.end();
-
+	//response.json(rows)
 });
 
 router.get('/countries/:id', function(request, response){
