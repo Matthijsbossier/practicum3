@@ -8,12 +8,10 @@ app.all('*', function(request, response, next) {
  console.log(request.method + " " + request.url);
  next();
 })
-/*
-coment die waar je niet aan werkt
 
 app.use('/api/v1', require('./routes/country'));
 app.use('/api/v1', require('./routes/city'));
-*/
+
 app.all('*', function(request, response) {
  response.status(404);
  response.send('404 - Not found');
