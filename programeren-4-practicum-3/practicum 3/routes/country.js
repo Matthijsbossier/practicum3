@@ -21,31 +21,33 @@ router.get('/recipes/:id', function(request,response){
 	response.json(recipe);
 });
 */
-router.get('/api/v1/countries', function(request, response){
+router.get('/countries', function(request, response){
 	response.status(200);
-	response.json();
+	response.json({
+		"description": "Recipes"
+	});
 });
 
-router.get('api/v1/countries/:id', function(request, response){
+router.get('/countries/:id', function(request, response){
 	response.status(200);
 	var id = request.params.id || '';
 	var country = countries[id];
 	response.json(country);
 });
 
-router.post('api/v1/countries', function(request, response){
+router.post('/countries', function(request, response){
 
 });
 
-router.put('api/v1/countries/:id', function(request, response){
+router.put('/countries/:id', function(request, response){
 
 });
 
-router.delete('api/v1/countries/:id', function(request, response){
+router.delete('/countries/:id', function(request, response){
 
 });
 
-router.get('api/v1/search?type=country&continent='+ +'&limit=24', function(request, response){
+router.get('/search?type=country&continent='+ +'&limit=24', function(request, response){
 
 })
 
