@@ -1,0 +1,6 @@
+{
+	"webPort" : "8080",
+	"dbHost" : "localhost",
+	"dbUser" : "node_mysql_user",
+	"dbDatabase" : "world"
+}
