@@ -8,7 +8,7 @@ app.all('*', function(request, response, next) {
  console.log(request.method + " " + request.url);
  next();
 })
-
+// test
 app.use('/api/v1', require('./routes/routes_api_v1'));
 app.use('/api/v2', require('./routes/routes_api_v2'));
 
