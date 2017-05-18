@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var db = require('..config/db');
+var db = require('../config/db.js');
 
 router.get('/info', function(request, response) {
     response.status(200);
@@ -11,9 +11,25 @@ router.get('/info', function(request, response) {
 });
 
 router.get('/cities', function(request, response){
-    response.status(200);
-    response.json();
+
     db.query('SELECT * FROM city', function(error, rows, fields){
+        if (error) {
+            response.status(400).json(error);
+        } else {
+            response.status(200).json(rows);
+        }
+    })
+
+});
+
+router.get('/cities/:id', function (req, res){
+    var cityId = req.params.id || '';
+
+    res.contentType('application/json');
+
+
+    db.query('SELECT * FROM city where city_id=?', [ cityId ],
+        function(error, rows, fields){
         if (error) {
             res.status(400).json(error);
         } else {
@@ -21,11 +37,6 @@ router.get('/cities', function(request, response){
         }
     })
 
-});
-
-router.get('/cities:id', function (req, res){
-    res.status(200);
-    res.json();
 });
 
 
