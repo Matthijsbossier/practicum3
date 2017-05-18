@@ -8,9 +8,9 @@ app.all('*', function(request, response, next) {
  console.log(request.method + " " + request.url);
  next();
 })
-// test
-app.use('/api/v1', require('./routes/routes_api_v1'));
-app.use('/api/v2', require('./routes/routes_api_v2'));
+
+//app.use('/api/v1', require('./routes/country'));
+app.use('/api/v1', require('./routes/city'));
 
 app.all('*', function(request, response) {
  response.status(404);
