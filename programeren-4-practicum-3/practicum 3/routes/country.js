@@ -22,22 +22,27 @@ router.get('/info', function(request, response) {
 
 router.get('/countries', function(request, response){
 	response.status(200);
-	connection.query('SELECT * from country LIMIT 3', function(error, rows, fields) {
+	connection.query('SELECT * from country', function(error, rows, fields) {
 			if (error)
 				console.log('' + error);
 			else
 				console.log("gelukt");
-				response.json(rows);
-		});
-	connection.end();
-	//response.json(rows)
+				response.json({rows});
+		});	
 });
 
 router.get('/countries/:id', function(request, response){
 	response.status(200);
-	var id = request.params.id || '';
-	var country = countries[id];
-	response.json(country);
+	connection.query('SELECT * from country', function(error, rows, fields) {
+			if (error)
+				console.log('' + error);
+			else
+				console.log("gelukt");
+				
+				var id = request.params.id || '';
+				var country = rows[id];
+				response.json({country});
+		});
 });
 
 router.post('/countries', function(request, response){
