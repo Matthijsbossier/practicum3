@@ -28,8 +28,7 @@ router.get('/cities/:id', function (req, res){
     res.contentType('application/json');
 
 
-    db.query('SELECT * FROM city where city_id=?', [ cityId ],
-        function(error, rows, fields){
+    db.query('SELECT * FROM city where ID=?', [ cityId ], function(error, rows, fields){
         if (error) {
             res.status(400).json(error);
         } else {
