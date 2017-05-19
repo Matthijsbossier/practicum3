@@ -1,10 +1,14 @@
 {
-  "name": "world",
+  "name": "practicum3",
   "version": "1.0.0",
-  "description": "",
+  "description": "database connectie",
   "main": "index.js",
+  "dependencies": {
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",

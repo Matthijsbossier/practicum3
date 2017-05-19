@@ -2,49 +2,71 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var recipes = require('../recepies.js');
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'node_mysql_user',
+	password : process.env.DB_PASSWORD,
+	database : 'world'
+});
+
+
+connection.connect();
 
 router.get('/info', function(request, response) {
- response.status(200);
- response.json({
- "description": "Recipes"
- });
-});
-
-router.get('/recipes', function(request,response){
-	response.json(recipes)
-});
-
-router.get('/recipes/:id', function(request,response){
-	var id = request.params.id || '';
-	var recipe = recipes[id];
-	response.json(recipe);
-});
-
-router.get('/api/v1/countries', function(request, response){
 	response.status(200);
-	response.json();
+ 	response.json({
+ 	"description": "Recipes"
+ 	});
 });
 
-router.get('api/v1/countries/:id', function(request, response){
+router.get('/countries', function(request, response){
 	response.status(200);
-	var id = request.params.id || '';
-	var country = countries[id];
-	response.json(country);
+	connection.query('SELECT * from country', function(error, rows, fields) {
+		if (error)
+			console.log('' + error);
+		else
+			console.log("gelukt");
+			response.json({rows});
+	});	
 });
 
-router.post('api/v1/countries', function(request, response){
+router.get('/countries/:id', function(request, response){
+	response.status(200);
+	connection.query('SELECT * from country', function(error, rows, fields) {
+		if (error)
+			console.log('' + error);
+		else
+			console.log("gelukt");
+			
+			var id = request.params.id || '';
+			var country = rows[id];
+			response.json({country});
+	});
+});
+
+router.post('/countries', function(request, response){
 
 });
 
-router.put('api/v1/countries/:id', function(request, response){
+router.put('/countries/:id', function(request, response){
 
 });
 
-router.delete('api/v1/countries/:id', function(request, response){
+router.delete('/countries/:id', function(request, response){
 
 });
 
-router.get('api/v1/search?')
+router.get('/search?type=country&continent=:continent&limit=24', function(request, response){
+	response.status(200);
+	var continent = request.params.continent || '';
+	connection.query('SELECT * from country where continent = '+ continent, function(error, rows, fields) {
+		if (error)
+			console.log('' + error);
+		else
+			console.log("gelukt");
+			response.json({rows});
+	});	
+})
 
 module.exports = router;
