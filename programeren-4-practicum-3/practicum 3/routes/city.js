@@ -38,5 +38,7 @@ router.get('/cities/:id', function (req, res){
 
 });
 
+router.get('/cities')
+
 
 module.exports = router;
