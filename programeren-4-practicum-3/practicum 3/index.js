@@ -9,7 +9,7 @@ app.all('*', function(request, response, next) {
  next();
 })
 
-//app.use('/api/v1', require('./routes/country'));
+app.use('/api/v1', require('./routes/country'));
 app.use('/api/v1', require('./routes/city'));
 
 app.all('*', function(request, response) {
