@@ -4,6 +4,7 @@
   "description": "database connectie",
   "main": "index.js",
   "dependencies": {
+    "jwt-simple": "^0.5.1",
     "mysql": "^2.13.0"
   },
   "devDependencies": {},
@@ -11,8 +12,5 @@
     "test": "mocha"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "mysql": "^2.13.0"
-  }
+  "license": "ISC"
 }
